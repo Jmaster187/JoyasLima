@@ -82,6 +82,10 @@
                         <div class="column">
                             <label>Proveedor</label>
                             <select name="id_proveedor" require>
+                                <?php foreach($datos['proveedores'] as $proveedor) : ?>
+                                    <option value="<?php echo $producto->id_proveedor; ?>"><?php echo $producto->nombre; ?></option>
+
+                                    <?php endforeach; ?>
                           
                             
                             </select>
