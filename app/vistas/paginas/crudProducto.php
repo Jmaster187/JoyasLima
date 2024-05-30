@@ -81,7 +81,7 @@
                         
                         <div class="column">
                             <label>Proveedor</label>
-                            <select name="id_proveedor" require>
+                            <select name="id_proveedor gggggg" require>
                           
                             
                             </select>
