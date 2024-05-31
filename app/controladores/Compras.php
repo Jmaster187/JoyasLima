@@ -2,7 +2,7 @@
 
     class Compras extends Controlador{
         public function __construct(){
-            $this->productoModelo = $this->modelo('modelProducto');
+            $this->compraModelo = $this->modelo('modelCompra');
             $this->proveedorModelo = $this->modelo('modelProveedor');
             $this->departamentoModelo = $this->modelo('modelDepartamento');
             
@@ -10,13 +10,13 @@
 
         public function index(){
             //Obtener los usuarios
-            $productos = $this->productoModelo->obtenerProducto();
-            $proveedores = $this->productoModelo->obtenerProveedor();
-            $departamentos = $this->departamentoModelo->obtenerDepartamento();
+            $compras = $this->compraModelo->obtenerCompra();
+            //$productos = $this->productoModelo->obtenerProducto();
+            //$proveedores = $this->productoModelo->obtenerProveedor();
             $datos = [
-                'productos' => $productos,
-                'proveedores' => $proveedores,
-                'departamentos' => $departamentos
+                'compras' => $compras,
+                //'productos' => $productos,
+                //'proveedores' => $proveedores
                 
             ];
 
