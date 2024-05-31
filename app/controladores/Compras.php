@@ -1,6 +1,6 @@
 <?php
 
-    class Productos extends Controlador{
+    class Compras extends Controlador{
         public function __construct(){
             $this->productoModelo = $this->modelo('modelProducto');
             $this->proveedorModelo = $this->modelo('modelProveedor');
@@ -20,7 +20,7 @@
                 
             ];
 
-            $this->vista('/paginas/crudProducto', $datos);
+            $this->vista('/paginas/crudCompras', $datos);
         }
 
         //metodo para agregar datos 

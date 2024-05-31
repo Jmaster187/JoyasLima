@@ -71,19 +71,24 @@
                                 <label>Precio</label>
                                 <input type="number" step="0.01" name="precio" placeholder="Ingresa el precio" required>
                             </div>
-                        
-                            <div class="input-box">
-                                <label>Descripcion</label>
-                                <input type="text" name="descripcion" placeholder="Ingresa una descripcion" required>
-                            </div>
                             
                         </div>
                         
                         <div class="column">
                             <label>Proveedor</label>
-                            <select name="id_proveedor" require>
+                            <select class="input-box" name="id_proveedor" require>
                                 <?php foreach($datos['proveedores'] as $proveedor) : ?>
-                                    <option value="<?php echo $producto->id_proveedor; ?>"><?php echo $producto->nombre; ?></option>
+                                    <option value="<?php echo $proveedor->id_proveedor; ?>"><?php echo $proveedor->nombre; ?></option>
+
+                                    <?php endforeach; ?>
+                          
+                            
+                            </select>
+
+                            <label>Categoria</label>
+                            <select name="id_categoria" require>
+                                <?php foreach($datos['departamentos'] as $departamento) : ?>
+                                    <option value="<?php echo $departamento->id_departamento; ?>"><?php echo $departamento->nombre; ?></option>
 
                                     <?php endforeach; ?>
                           

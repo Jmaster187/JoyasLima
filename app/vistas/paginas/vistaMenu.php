@@ -39,7 +39,7 @@
 
             <li>
                 <span class="material-symbols-outlined">shopping_cart</span>
-                <a href="#">Compras</a>
+                <a href="<?php echo RUTA_URL; ?>/Compras">Compras</a>
             </li>
             <li>
                 <span class="material-symbols-outlined">credit_card</span>
