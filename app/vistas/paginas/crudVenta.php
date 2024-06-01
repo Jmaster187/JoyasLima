@@ -16,7 +16,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Proveedor</th>
+                            <th>cliente</th>
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Precio total</th>
@@ -26,15 +26,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($datos['compras'] as $compra) : ?>
+                    <?php foreach($datos['ventas'] as $venta) : ?>
                         <tr>
-                            <td><?php echo $compra->nombre_proveedor; ?></td>
-                            <td><?php echo $compra->codigo_producto; ?></td>
-                            <td><?php echo $compra->cantidad; ?></td>
-                            <td><?php echo $compra->precio_total; ?></td>
-                            <td><?php echo $compra->fecha; ?></td>
+                            <td><?php echo $venta->nombre_cliente; ?></td>
+                            <td><?php echo $venta->codigo_producto; ?></td>
+                            <td><?php echo $venta->cantidad; ?></td>
+                            <td><?php echo $venta->precio_total; ?></td>
+                            <td><?php echo $venta->fecha; ?></td>
                           <!--  <td><a href="<?php echo RUTA_URL; ?>/clientes/editar/<?php echo $cliente->id_cliente; ?>">Editar</a></td> -->
-                            <!-- <td><a href="<?php echo RUTA_URL; ?>/departamentos/borrar/<?php echo $departamento->id_departamento; ?>">Borrar</a></td> -->
+                            <td><a href="<?php echo RUTA_URL; ?>/Ventas/borrar/<?php echo $venta->id_venta; ?>">Borrar</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -44,7 +44,6 @@
             <div class="column">
                 <button class="btn_regresar" onclick="window.location.href='<?php echo RUTA_URL; ?>/Menu'">Regresar</button>
                 <button class="btn">Agregar</button>
-                <!-- <button class="btn" onclick="window.location.href='<?php echo RUTA_URL; ?>/Categorias'">Categoria</button>    -->
             </div>
         </div>
         <!--Creacion de la ventana modal-->
@@ -52,9 +51,9 @@
             
                 <!--este es el codigo del formulario-->
                 <section class="container_modal">
-                    <header>Registro de Compras</header>
+                    <header>Registro de Ventas</header>
             
-                    <form action="<?php echo RUTA_URL; ?>/compras/agregar" method="POST" class="form">
+                    <form action="<?php echo RUTA_URL; ?>/ventas/agregar" method="POST" class="form">
             
                         <div class="column">
                         <label>Producto</label>
@@ -67,10 +66,10 @@
                             
                             </select>
                         
-                            <label>Proveedor</label>
-                            <select class="input-box" name="id_proveedor" require>
-                                <?php foreach($datos['proveedores'] as $proveedor) : ?>
-                                    <option value="<?php echo $proveedor->id_proveedor; ?>"><?php echo $proveedor->nombre; ?></option>
+                            <label>Cliente</label>
+                            <select class="input-box" name="id_cliente" require>
+                                <?php foreach($datos['clientes'] as $cliente) : ?>
+                                    <option value="<?php echo $cliente->id_cliente; ?>"><?php echo $cliente->nombre; ?></option>
 
                                     <?php endforeach; ?>
                           
@@ -80,7 +79,7 @@
                         </div>
                         <div class="column">
                             <div class="input-box">
-                                <label>Unidad</label>
+                                <label>Cantidad</label>
                                 <input type="number" name="cantidad" placeholder="Ingresa la cantidad" required>
                             </div>
 
@@ -93,7 +92,7 @@
                         
                         <div class="column">
                         <div class="input-box">
-                                <label>Fecha de compra</label>
+                                <label>Fecha de Venta</label>
                                 <input type="date" name="fecha" placeholder="Ingresa la fecha" required>
                             </div>
                             

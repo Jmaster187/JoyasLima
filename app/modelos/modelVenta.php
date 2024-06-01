@@ -1,34 +1,34 @@
 <?php
     // este codigo es para hacer interaccion con la base de datos
-    class modelCompra{
+    class modelVenta{
         private $db;
 
         public function __construct(){
             $this->db = new Base;
         }
         // funcion para poder llamar las vistas por medio de query y hace la interaccion con la funcion registro que se encuentra creada en base.php
-        public function obtenerCompra(){
+        public function obtenerVenta(){
             $this->db->query('SELECT 
-            proveedor.nombre AS nombre_proveedor,
+            cliente.nombre AS nombre_cliente,
             producto.codigo AS codigo_producto,
-            compra.cantidad,
-            compra.precio_total,
-            compra.fecha
+            venta.cantidad,
+            venta.precio_total,
+            venta.fecha
         FROM 
-            compra
+            venta
         JOIN 
-            proveedor ON compra.id_proveedor = proveedor.id_proveedor
+            cliente ON cliente.id_cliente = cliente.id_cliente
         JOIN 
-            producto ON compra.id_producto = producto.id_producto;');
+            producto ON venta.id_producto = producto.id_producto;');
             $resultados = $this->db->registros();
             return $resultados;
         }
 
-        public function agregarCompra($datos){
-            $this->db->query('INSERT INTO compra (id_proveedor, id_producto, cantidad, precio_total, fecha) VALUES (:id_proveedor, :id_producto, :cantidad, :precio_total, :fecha)');
+        public function agregarVenta($datos){
+            $this->db->query('INSERT INTO venta (id_cliente, id_producto, cantidad, precio_total, fecha) VALUES (:id_cliente, :id_producto, :cantidad, :precio_total, :fecha)');
 
             //vincula los valores
-            $this->db->bind(':id_proveedor', $datos['id_proveedor']);
+            $this->db->bind(':id_cliente', $datos['id_cliente']);
             $this->db->bind(':id_producto', $datos['id_producto']);
             $this->db->bind(':cantidad', $datos['cantidad']);
             $this->db->bind(':precio_total', $datos['precio_total']);
@@ -40,6 +40,13 @@
             }else{
                 return false;
             }
+        }
+
+        public function obtenerVentaId($id){
+            $this->db->query('SELECT * FROM venta WHERE id_venta = :id');
+            $this->db->bind(':id', $id);
+            $fila = $this->db->registro();
+            return $fila;
         }
 
        /* public function actualizarCliente($datos){
@@ -64,11 +71,11 @@
             }
         }*/
 
-        public function borrarDepartamento($datos){
-            $this->db->query('DELETE FROM departamento WHERE id_departamento = :id');
+        public function borrarVenta($datos){
+            $this->db->query('DELETE FROM venta WHERE id_venta = :id');
 
             // se vinculan los valores para poder actializar
-            $this->db->bind(':id', $datos['id_departamento']);
+            $this->db->bind(':id', $datos['id_venta']);
 
             //ejecutar
             if($this->db->execute()){

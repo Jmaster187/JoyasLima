@@ -58,6 +58,35 @@
                 return false;
             }
         }
+        public function aumentarStock($id_producto, $cantidad){
+            $this->db->query('UPDATE producto SET stock = stock + :cantidad WHERE id_producto = :id_producto');
+
+            //vinculamos los valores
+            $this->db->bind(':cantidad', $cantidad);
+            $this->db->bind(':id_producto', $id_producto);
+
+            //ejecutar
+            if($this->db->execute()){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+        public function ventaStock($id_producto, $cantidad){
+            $this->db->query('UPDATE producto SET stock = stock - :cantidad WHERE id_producto = :id_producto');
+
+            //vinculamos los valores
+            $this->db->bind(':cantidad', $cantidad);
+            $this->db->bind(':id_producto', $id_producto);
+
+            //ejecutar
+            if($this->db->execute()){
+                return true;
+            }else {
+                return false;
+            }
+        }
 
        /* public function actualizarCliente($datos){
             $this->db->query('UPDATE cliente SET nombre = :nombre, apellido = :apellido, correo = :correo, telefono = :telefono, fecha_nacimiento = :fecha_nacimiento, genero = :genero, direccion = :direccion, ciudad = :ciudad WHERE id_cliente = :id');

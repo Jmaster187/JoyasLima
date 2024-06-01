@@ -46,7 +46,7 @@
             </li>
             <li>
                 <span class="material-symbols-outlined">credit_card</span>
-                <a href="#">Ventas</a>
+                <a href="<?php echo RUTA_URL; ?>/Ventas">Ventas</a>
             </li>
             <li>
                 <span class="material-symbols-outlined">bar_chart</span>

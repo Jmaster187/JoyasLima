@@ -32,7 +32,7 @@
                             <td><?php echo 'Q',$producto->precio; ?></td>
                             <td><?php echo $producto->stock; ?></td>
                           <!--  <td><a href="<?php echo RUTA_URL; ?>/clientes/editar/<?php echo $cliente->id_cliente; ?>">Editar</a></td> -->
-                            <td><a href="<?php echo RUTA_URL; ?>/departamentos/borrar/<?php echo $departamento->id_departamento; ?>">Borrar</a></td>
+                            <!-- <td><a href="<?php echo RUTA_URL; ?>/departamentos/borrar/<?php echo $departamento->id_departamento; ?>">Borrar</a></td> -->
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

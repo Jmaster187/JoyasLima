@@ -51,7 +51,7 @@
                 }
             }else{
 
-                $this->vista('paginas/crudCompra', $datos);
+                $this->vista('paginas/crudCompras', $datos);
             }
         }
 
