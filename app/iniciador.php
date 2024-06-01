@@ -1,4 +1,6 @@
 <?php
+
+    // Iniciar sesión 
     //Caargamos las librerias
     require_once 'config/Configurar.php';
     require_once 'helpers/url_helper.php';

@@ -14,7 +14,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     /*background: linear-gradient(#1b1b1b, #0e0d0e);*/
-    background-image: url('/public/img/Fondo2.jpg');
+    background-image: url('../img/Fondo3.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

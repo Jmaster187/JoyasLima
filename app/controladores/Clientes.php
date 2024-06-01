@@ -65,7 +65,7 @@
                 ];
 
                 if($this->clienteModelo->actualizarCliente($datos)){
-                    redireccionar('/paginas/crudCliente');
+                    redireccionar('/Clientes');
                 }else{
                     die('algo salio mal');
                 }

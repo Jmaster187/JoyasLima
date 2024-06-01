@@ -5,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale-=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="../../public/agregar/styles.css">
+        <link rel="stylesheet" href="<?php echo RUTA_PUBLIC; ?>/css/cliente.css">
     </head>
     <body>
             
                 <!--este es el codigo del formulario-->
                 <section class="container_modal">
-                <a href="<?php echo RUTA_URL; ?>/paginas" class="btn btn-light"><i class="fa fa-backward"></i>Volver</a>
+                <a href="<?php echo RUTA_URL; ?>/Clientes" class="btn btn-light"><i class="fa fa-backward"></i>Volver</a>
                     <header>Borrar informacion de clientes</header>
             
                     <form action="<?php echo RUTA_URL; ?>/clientes/borrar/<?php echo $datos['id_cliente'] ?>" method="POST" class="form">

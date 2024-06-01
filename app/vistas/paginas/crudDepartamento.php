@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale-=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="public/css/cliente.css">
+        <link rel="stylesheet" href="<?php echo RUTA_PUBLIC; ?>/css/cliente.css">
     </head>
     <body>
         <img src="public/img/Logo.jpg" alt="Logo" class="Logo">
@@ -69,6 +69,6 @@
             
         </section>
 
-        <script src="public/js/cliente.js"></script>
+        <script src="<?php echo RUTA_PUBLIC; ?>/js/cliente.js"></script>
     </body>
 </html>

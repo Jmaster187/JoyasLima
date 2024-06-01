@@ -5,14 +5,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale-=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="public/css/cliente.css">
+        <link rel="stylesheet" href="<?php echo RUTA_PUBLIC; ?>/css/cliente.css">
     </head>
     <body>
             
                 <!--este es el codigo del formulario-->
                 <section class="container_modal">
                 <a href="<?php echo RUTA_URL; ?>/Proveedores" class="btn btn-light"><i class="fa fa-backward"></i>Volver</a>
-                    <header>Borrar informacion de clientes</header>
+                    <header>Borrar proveedor</header>
+
+                    <?php if (!empty($datos['error'])): ?>
+                        <div class="alerta">
+                            <?php echo $datos['error']; ?>
+                        </div>
+                        <?php endif; ?>
             
                     <form action="<?php echo RUTA_URL; ?>/proveedores/borrar/<?php echo $datos['id_proveedor'] ?>" method="POST" class="form">
             

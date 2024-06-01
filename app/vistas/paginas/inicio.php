@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Link css-->
-    <link rel="stylesheet" href="public/css/inicio.css">
+    <link rel="stylesheet" href="<?php echo RUTA_PUBLIC; ?>/css/inicio.css">
 
     <!-- Link iconos-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -30,6 +30,7 @@
             <div class="form login_form">
                 <form action="<?php echo RUTA_URL; ?>/paginas/inicio" method="POST" >
                     <h2>Ingresar</h2>
+                    
 
                     <div class="input_box">
                         <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Ingresa tu usuario" required>
@@ -59,6 +60,11 @@
            
         </div>
     </section>
-    <script src="public/js/inicio.js"></script>
+    <script src="<?php echo RUTA_PUBLIC; ?>/js/inicio.js"></script>
+    <script>
+        <?php if(!empty($datos['error'])): ?>
+            alert('<?php echo $datos['error']; ?>');
+            <?php endif; ?>
+    </script>
 </body>
 </html>

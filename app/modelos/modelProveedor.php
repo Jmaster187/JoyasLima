@@ -61,11 +61,20 @@
             // se vinculan los valores para poder actializar
             $this->db->bind(':id', $datos['id_proveedor']);
 
-            //ejecutar
-            if($this->db->execute()){
-                return true;
-            }else {
-                return false;
+            try {
+
+                //ejecutar
+                if($this->db->execute()){
+                    return true;
+                }else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                if ($e->getCode() == '23000') {
+                    return 'No se puede borrar porque tiene compras añadidas';
+                } else {
+                    throw $e;
+                }
             }
         }
 

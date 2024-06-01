@@ -14,11 +14,12 @@
             $this->db->bind(':nombre_usuario', $datos['nombre_usuario']);
             $this->db->bind(':contrasena', $datos['contraseña']);
             $row = $this->db->registro();
-            
 
-
-
-            return $row;
+            if($this->db->rowCount() > 0) {
+                return $row;
+            }else {
+                return false;
+            }
             
         }
 

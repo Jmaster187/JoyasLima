@@ -93,16 +93,30 @@
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = [
-                    'id_proveedor' => $id
+                    'id_proveedor' => $id,
+                    'nombre' => $proveedor->nombre,
+                    'correo' => $proveedor->correo,
+                    'telefono' => $proveedor->telefono,
+                    'direccion' => $proveedor->direccion,
                 ];
 
-                if($this->proveedorModelo->borrarProveedor($datos)){
+
+                $resultado = $this->proveedorModelo->borrarProveedor($datos);
+
+                if ($resultado === true) {
                     redireccionar('/Proveedores');
-                }else{
-                    die('algo salio mal');
+                } else {
+                    $datos['error'] = $resultado;
+                    echo "<script>alert('$resultado');</script>";
+                    $this->vista('paginas/borrarProveedor', $datos);
                 }
+
+                
+            } else {
+                $this->vista('paginas/borrarProveedor', $datos);
+
             }
 
-            $this->vista('paginas/borrarProveedor', $datos);
+            
         }
     }
