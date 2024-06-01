@@ -2,6 +2,7 @@
 
     class Departamentos extends Controlador{
         public function __construct(){
+            redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->departamentoModelo = $this->modelo('modelDepartamento');
             
         }

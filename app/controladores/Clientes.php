@@ -2,6 +2,7 @@
 
     class Clientes extends Controlador{
         public function __construct(){
+            redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->clienteModelo = $this->modelo('modelCliente');
             
         }

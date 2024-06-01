@@ -1,9 +1,13 @@
 <?php
 
     // Iniciar sesión 
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     //Caargamos las librerias
     require_once 'config/Configurar.php';
     require_once 'helpers/url_helper.php';
+    require_once 'helpers/session_helper.php';
   
     /*require_once 'librerias/Base.php';
     require_once 'librerias/Controlador.php';

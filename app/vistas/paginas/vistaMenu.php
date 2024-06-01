@@ -8,6 +8,9 @@
     <!-- Google font iconos-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="<?php echo RUTA_PUBLIC; ?>/css/menu.css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
     <aside class="sidebar">
@@ -59,7 +62,7 @@
             </li>
             <li class="logout-link">
                 <span class="material-symbols-outlined">Logout</span>
-                <a href="<?php echo RUTA_URL; ?>/paginas/inicio">Cerrar sesión</a>
+                <a href="<?php echo RUTA_URL; ?>/Paginas/cerrarSesion">Cerrar sesión</a>
             </li>
         </ul>
     </aside>

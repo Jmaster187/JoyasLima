@@ -2,8 +2,8 @@
 
     class Menu extends Controlador{
         public function __construct(){
+            redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->usuarioModelo = $this->modelo('Usuario');
-            $this->vista('paginas/vistaMenu');
         }
 
         public function index(){

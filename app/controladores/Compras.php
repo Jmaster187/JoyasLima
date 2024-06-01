@@ -2,6 +2,7 @@
 
     class Compras extends Controlador{
         public function __construct(){
+            redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->compraModelo = $this->modelo('modelCompra');
             $this->proveedorModelo = $this->modelo('modelProveedor');
             $this->departamentoModelo = $this->modelo('modelDepartamento');

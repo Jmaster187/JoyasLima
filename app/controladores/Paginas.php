@@ -20,7 +20,9 @@
                 $user = $this->loginModelo->getUser($datos);
                 
                 
-                 if ($this->loginModelo->getUser($datos)){
+                 if ($user){
+                    $_SESSION['usuario_id'] = $user->id;
+                    $_SESSION['nombre_usuario'] = $user->nombre_usuario;
                      redireccionar('/Menu');
                  }else {
                      $datos['error'] = 'Nombre de usuario o contraseña son incorrectos';
@@ -35,6 +37,13 @@
                 $this->vista('/paginas/inicio', $datos);
 
             }
+        }
+
+        public function cerrarSesion() {
+            session_start();
+            session_unset();
+            session_destroy();
+            redireccionar('/paginas/inicio');
         }
 
     }

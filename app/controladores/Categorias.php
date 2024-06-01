@@ -2,6 +2,7 @@
 
     class Categorias extends Controlador{
         public function __construct(){
+            redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->categoriaModelo = $this->modelo('modelCategoria');
             
         }

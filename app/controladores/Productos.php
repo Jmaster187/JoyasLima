@@ -2,6 +2,7 @@
 
     class Productos extends Controlador{
         public function __construct(){
+            redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->productoModelo = $this->modelo('modelProducto');
             $this->proveedorModelo = $this->modelo('modelProveedor');
             $this->departamentoModelo = $this->modelo('modelDepartamento');

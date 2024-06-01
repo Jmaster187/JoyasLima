@@ -2,6 +2,8 @@
 
     class Proveedores extends Controlador{
         public function __construct(){
+            //verifica la sesion
+            redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->proveedorModelo = $this->modelo('modelProveedor');
             
         }
