@@ -37,11 +37,26 @@
             }
         }
 
-        public function obtenerDepartamentoId($id){
-            $this->db->query('SELECT * FROM departamento WHERE id_departamento = :id');
+        public function obtenerCategoria($id){
+            $this->db->query('SELECT * FROM categoria WHERE id_categoria = :id');
             $this->db->bind(':id', $id);
             $fila = $this->db->registro();
             return $fila;
+        }
+
+        public function actualizarStock($id_producto, $cantidad){
+            $this->db->query('UPDATE producto SET stock = stock + :cantidad WHERE id_producto = :id_producto');
+
+            //vinculamos los valores
+            $this->db->bind(':cantidad', $cantidad);
+            $this->db->bind(':id_producto', $id_producto);
+
+            //ejecutar
+            if($this->db->execute()){
+                return true;
+            }else {
+                return false;
+            }
         }
 
        /* public function actualizarCliente($datos){

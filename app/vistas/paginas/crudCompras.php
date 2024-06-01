@@ -52,31 +52,21 @@
             
                 <!--este es el codigo del formulario-->
                 <section class="container_modal">
-                    <header>Registro de productos</header>
+                    <header>Registro de Compras</header>
             
                     <form action="<?php echo RUTA_URL; ?>/compras/agregar" method="POST" class="form">
             
                         <div class="column">
-                            <div class="input-box">
-                                <label>Codigo</label>
-                                <input type="text" name="codigo" placeholder="Ingresa el codigo" required>
-                            </div>
-                        
-                            <div class="input-box">
-                                <label>Descripcion</label>
-                                <input type="text" name="descripcion" placeholder="Ingresa una descripcion" >
-                            </div>
+                        <label>Producto</label>
+                            <select class="input-box" name="id_producto" require>
+                                <?php foreach($datos['productos'] as $producto) : ?>
+                                    <option value="<?php echo $producto->id_producto; ?>"><?php echo $producto->codigo; ?></option>
+
+                                    <?php endforeach; ?>
+                          
                             
-                        </div>
-                        <div class="column">
-                            <div class="input-box">
-                                <label>Precio</label>
-                                <input type="number" step="0.01" name="precio" placeholder="Ingresa el precio" required>
-                            </div>
-                            
-                        </div>
+                            </select>
                         
-                        <div class="column">
                             <label>Proveedor</label>
                             <select class="input-box" name="id_proveedor" require>
                                 <?php foreach($datos['proveedores'] as $proveedor) : ?>
@@ -86,16 +76,26 @@
                           
                             
                             </select>
-
-                            <label>Categoria</label>
-                            <select name="id_categoria" require>
-                                <?php foreach($datos['departamentos'] as $departamento) : ?>
-                                    <option value="<?php echo $departamento->id_departamento; ?>"><?php echo $departamento->nombre; ?></option>
-
-                                    <?php endforeach; ?>
-                          
                             
-                            </select>
+                        </div>
+                        <div class="column">
+                            <div class="input-box">
+                                <label>Cantidad</label>
+                                <input type="number" name="cantidad" placeholder="Ingresa la cantidad" required>
+                            </div>
+
+                            <div class="input-box">
+                                <label>Precio Total</label>
+                                <input type="number" name="precio_total" placeholder="Total de la compra" required>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="column">
+                        <div class="input-box">
+                                <label>Fecha de compra</label>
+                                <input type="date" name="fecha" placeholder="Ingresa la fecha" required>
+                            </div>
                             
                         </div>
             

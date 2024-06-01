@@ -4,6 +4,7 @@
         public function __construct(){
             redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->compraModelo = $this->modelo('modelCompra');
+            $this->productoModelo = $this->modelo('modelProducto');
             $this->proveedorModelo = $this->modelo('modelProveedor');
             $this->departamentoModelo = $this->modelo('modelDepartamento');
             
@@ -12,12 +13,12 @@
         public function index(){
             //Obtener los usuarios
             $compras = $this->compraModelo->obtenerCompra();
-            //$productos = $this->productoModelo->obtenerProducto();
-            //$proveedores = $this->productoModelo->obtenerProveedor();
+            $productos = $this->productoModelo->obtenerProducto();
+            $proveedores = $this->productoModelo->obtenerProveedor();
             $datos = [
                 'compras' => $compras,
-                //'productos' => $productos,
-                //'proveedores' => $proveedores
+                'productos' => $productos,
+                'proveedores' => $proveedores
                 
             ];
 
@@ -26,30 +27,31 @@
 
         //metodo para agregar datos 
         public function agregar(){
-            $proveedores = $this->proveedorModelo->obtenerProveedores();
-            $departamentos = $this->departamentoModelo->obtenerDepartamento();
+            $productos = $this->productoModelo->obtenerProducto();
+            $proveedores = $this->productoModelo->obtenerProveedor();
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = [
-                    'codigo' => trim($_POST['codigo']),
-                    'descripcion' => trim($_POST['descripcion']),
-                    'precio' => trim($_POST['precio']),
-                    'id_categoria' => trim($_POST['id_categoria']),
+                    'id_producto' => trim($_POST['id_producto']),
                     'id_proveedor' => trim($_POST['id_proveedor']),
+                    'cantidad' => trim($_POST['cantidad']),
+                    'precio_total' => trim($_POST['precio_total']),
+                    'fecha' => trim($_POST['fecha']),
                     'proveedores' => $proveedores,
-                    'departamentos' => $departamentos
+                    'productos' => $productos
                 ];
             
 
-                if($this->productoModelo->agregarProducto($datos)){
-                    redireccionar('/Productos');
+                if($this->compraModelo->agregarCompra($datos)){
+                    $this->productoModelo->actualizarStock($datos['id_producto'], $datos['cantidad']);
+                    redireccionar('/Compras');
 
                 }else{
                     die('algo salio mal');
                 }
             }else{
 
-                $this->vista('paginas/crudProducto', $datos);
+                $this->vista('paginas/crudCompra', $datos);
             }
         }
 

@@ -5,7 +5,7 @@
             redireccionarSiNoEstaLogueado('/paginas/inicio');
             $this->productoModelo = $this->modelo('modelProducto');
             $this->proveedorModelo = $this->modelo('modelProveedor');
-            $this->departamentoModelo = $this->modelo('modelDepartamento');
+            $this->categoriaModelo = $this->modelo('modelCategoria');
             
         }
 
@@ -13,11 +13,11 @@
             //Obtener los usuarios
             $productos = $this->productoModelo->obtenerProducto();
             $proveedores = $this->productoModelo->obtenerProveedor();
-            $departamentos = $this->departamentoModelo->obtenerDepartamento();
+            $categorias = $this->categoriaModelo->obtenerCategoria();
             $datos = [
                 'productos' => $productos,
                 'proveedores' => $proveedores,
-                'departamentos' => $departamentos
+                'categorias' => $categorias
                 
             ];
 
@@ -27,7 +27,7 @@
         //metodo para agregar datos 
         public function agregar(){
             $proveedores = $this->proveedorModelo->obtenerProveedores();
-            $departamentos = $this->departamentoModelo->obtenerDepartamento();
+            $categorias = $this->categoriaModelo->obtenerCategoria();
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = [
@@ -37,7 +37,7 @@
                     'id_categoria' => trim($_POST['id_categoria']),
                     'id_proveedor' => trim($_POST['id_proveedor']),
                     'proveedores' => $proveedores,
-                    'departamentos' => $departamentos
+                    'categorias' => $categorias
                 ];
             
 

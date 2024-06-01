@@ -87,8 +87,8 @@
 
                             <label>Categoria</label>
                             <select name="id_categoria" require>
-                                <?php foreach($datos['departamentos'] as $departamento) : ?>
-                                    <option value="<?php echo $departamento->id_departamento; ?>"><?php echo $departamento->nombre; ?></option>
+                                <?php foreach($datos['categorias'] as $categorias) : ?>
+                                    <option value="<?php echo $categorias->id_categoria; ?>"><?php echo $categorias->nombre; ?></option>
 
                                     <?php endforeach; ?>
                           

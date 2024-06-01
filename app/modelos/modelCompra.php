@@ -24,15 +24,15 @@
             return $resultados;
         }
 
-        public function agregarProducto($datos){
-            $this->db->query('INSERT INTO producto (codigo, descripcion, precio, id_categoria, id_proveedor) VALUES (:codigo, :descripcion, :precio, :id_categoria, :id_proveedor)');
+        public function agregarCompra($datos){
+            $this->db->query('INSERT INTO compra (id_proveedor, id_producto, cantidad, precio_total, fecha) VALUES (:id_proveedor, :id_producto, :cantidad, :precio_total, :fecha)');
 
             //vincula los valores
-            $this->db->bind(':codigo', $datos['codigo']);
-            $this->db->bind(':descripcion', $datos['descripcion']);
-            $this->db->bind(':precio', $datos['precio']);
-            $this->db->bind(':id_categoria', $datos['id_categoria']);
             $this->db->bind(':id_proveedor', $datos['id_proveedor']);
+            $this->db->bind(':id_producto', $datos['id_producto']);
+            $this->db->bind(':cantidad', $datos['cantidad']);
+            $this->db->bind(':precio_total', $datos['precio_total']);
+            $this->db->bind(':fecha', $datos['fecha']);
 
             //ejecutar el query
             if($this->db->execute()){
