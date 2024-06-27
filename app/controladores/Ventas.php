@@ -107,13 +107,11 @@
                 'nombre' => $clientes->nombre,
                 'cantidad' => $ventas->cantidad,
                 'codigo' => $productos->codigo,
-                'id_producto' => $productos->id_producto
+                'id_producto' => $ventas->id_producto
 
             ];
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $productos = $this->productoModelo->obtenerProducto();
-                $clientes = $this->clienteModelo->obtenerClientes();
                 $datos = [
                     'id_venta' => $id,
                     'id_producto' => trim($_POST['id_producto']),

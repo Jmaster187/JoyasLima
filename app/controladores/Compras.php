@@ -99,20 +99,27 @@
         public function borrar($id){
             //obtenemos los datos de la base de datos
             $compras = $this->compraModelo->obtenerCompraId($id);
+            $productos = $this->productoModelo->obtenerProductoId($compras->id_producto);
+            $proveedores = $this->proveedorModelo->obtenerProveedorId($compras->id_proveedor);
 
             $datos = [
                 'id_compra' => $compras->id_compra,
-                'nombre' => $departamento->nombre,
-                'descripcion' => $departamento->descripcion
+                'nombre' => $proveedores->nombre,
+                'cantidad' => $compras->cantidad,
+                'codigo' => $productos->codigo,
+                'id_producto' => $compras->id_producto
             ];
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = [
-                    'id_compra' => $id
+                    'id_compra' => $id,
+                    'id_producto' => trim($_POST['id_producto']),
+                    'cantidad' => trim($_POST['cantidad'])
                 ];
 
-                if($this->departamentoModelo->borrarDepartamento($datos)){
-                    redireccionar('/Departamentos');
+                if($this->compraModelo->borrarCompra($datos)){
+                    $this->productoModelo->dismiStock($datos['id_producto'], $datos['cantidad']);
+                    redireccionar('/Compras');
                 }else{
                     die('algo salio mal');
                 }

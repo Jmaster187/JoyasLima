@@ -11,16 +11,16 @@
             
                 <!--este es el codigo del formulario-->
                 <section class="container_modal">
-                <a href="<?php echo RUTA_URL; ?>/Ventas" class="btn btn-light"><i class="fa fa-backward"></i>Volver</a>
+                <a href="<?php echo RUTA_URL; ?>/Compras" class="btn btn-light"><i class="fa fa-backward"></i>Volver</a>
                     <header>Borrar informacion de clientes</header>
             
-                    <form action="<?php echo RUTA_URL; ?>/Ventas/borrar/<?php echo $datos['id_venta'] ?>" method="POST" class="form">
+                    <form action="<?php echo RUTA_URL; ?>/Compras/borrar/<?php echo $datos['id_compra'] ?>" method="POST" class="form">
                         <input type="hidden" name="id_producto" value="<?php echo $datos['id_producto']; ?>">
                         <input type="hidden" name="cantidad" value="<?php echo $datos['cantidad']; ?>">
             
                         <div class="column">
                             <div class="input-box">
-                                <label>Cliente</label>
+                                <label>Proveedor</label>
                                 <input type="text" name="nombre" value="<?php echo $datos['nombre']; ?>" required readonly>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             <input type="text" name="cantidad_mostrar" value="<?php echo $datos['cantidad']; ?>" readonly>
                         </div>
                         
-                        <button href="<?php echo RUTA_URL; ?>/Ventas" class="btn btn-light" onclick="return confirmDelete()">Borrar</button>
+                        <button href="<?php echo RUTA_URL; ?>/Compras" class="btn btn-light" onclick="return confirmDelete()">Borrar</button>
                     </form>
                 </section>
 

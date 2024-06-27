@@ -44,7 +44,7 @@
             $fila = $this->db->registro();
             return $fila;
         }
-
+        //esta funcion se hace cuando agrego una compra 
         public function actualizarStock($id_producto, $cantidad){
             $this->db->query('UPDATE producto SET stock = stock + :cantidad WHERE id_producto = :id_producto');
 
@@ -59,6 +59,8 @@
                 return false;
             }
         }
+
+        //esta funcion funciona cuando elimino una venta
         public function aumentarStock($id_producto, $cantidad){
             $this->db->query('UPDATE producto SET stock = stock + :cantidad WHERE id_producto = :id_producto');
 
@@ -73,7 +75,7 @@
                 return false;
             }
         }
-
+        //Esta funcion sirve cuando realizo una venta
         public function ventaStock($id_producto, $cantidad){
             $this->db->query('UPDATE producto SET stock = stock - :cantidad WHERE id_producto = :id_producto');
 
@@ -82,6 +84,20 @@
             $this->db->bind(':id_producto', $id_producto);
 
             //ejecutar
+            if($this->db->execute()){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+        //Funcion cuando elimino una compra
+        public function dismiStock($id_producto, $cantidad){
+            $this->db->query('UPDATE producto SET stock = stock - :cantidad WHERE id_producto = :id_producto');
+
+            $this->db->bind('cantidad', $cantidad);
+            $this->db->bind(':id_producto', $id_producto);
+
             if($this->db->execute()){
                 return true;
             }else {
