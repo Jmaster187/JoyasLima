@@ -10,6 +10,7 @@
     <body>
         <img src="public/img/Logo.jpg" alt="Logo" class="Logo">
         <div class="main-container">
+            <h1>Compras</h1>
             <div class="container" style="max-height: 300px; overflow-y: auto;">
                 <table>
                     <thead>

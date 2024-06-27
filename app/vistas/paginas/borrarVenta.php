@@ -14,21 +14,28 @@
                 <a href="<?php echo RUTA_URL; ?>/Ventas" class="btn btn-light"><i class="fa fa-backward"></i>Volver</a>
                     <header>Borrar informacion de clientes</header>
             
-                    <form action="<?php echo RUTA_URL; ?>/ventas/borrar/<?php echo $datos['id_ventas'] ?>" method="POST" class="form">
+                    <form action="<?php echo RUTA_URL; ?>/Ventas/borrar/<?php echo $datos['id_venta'] ?>" method="POST" class="form">
             
                         <div class="column">
                             <div class="input-box">
                                 <label>Cliente</label>
-                                <input type="text" name="id_cliente" value="<?php echo $datos['id_cliente']; ?>" required readonly>
+                                <input type="text" name="nombre" value="<?php echo $datos['nombre']; ?>" required readonly>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="input-box">
+                                <label>Producto</label>
+                                <input type="text" name="codigo" value="<?php echo $datos['codigo']; ?>" required readonly>
                             </div>
                         </div>
                         
                         <div class="input-box">
-                            <label>Descripcion</label>
-                            <input type="text" name="descripcion" value="<?php echo $datos['descripcion']; ?>" readonly>
+                            <label>Cantidad</label>
+                            <input type="text" name="cantidad" value="<?php echo $datos['cantidad']; ?>" readonly>
                         </div>
                         
-                        <button href="<?php echo RUTA_URL; ?>/ventas" class="btn btn-light" onclick="return confirmDelete()">Borrar</button>
+                        <button href="<?php echo RUTA_URL; ?>/Ventas" class="btn btn-light" onclick="return confirmDelete()">Borrar</button>
                     </form>
                 </section>
 

@@ -50,7 +50,7 @@
                 }
             }else{
 
-                $this->vista('paginas/crudCompras', $datos);
+                $this->vista('paginas/crudVenta', $datos);
             }
         }
 
@@ -98,22 +98,26 @@
         public function borrar($id){
             //obtenemos los datos de la base de datos
             $ventas = $this->ventaModelo->obtenerVentaId($id);
-            $productos = $this->productoModelo->obtenerProducto();
-            $clientes = $this->clienteModelo->obtenerClientes();
+            $productos = $this->productoModelo->obtenerProductoId($ventas->id_producto);
+            $clientes = $this->clienteModelo->obtenerClienteId($ventas->id_cliente);
 
             $datos = [
-                'id_cliente' => $clientes->id_departamento,
-                'id_producto' => $clientes->id_producto,
+                
+                'id_venta' => $ventas->id_venta,
+                'nombre' => $clientes->nombre,
                 'cantidad' => $ventas->cantidad,
-                'venta_total' => $ventas->venta_total,
-                'fecha' => $ventas->fecha,
-                'clientes' => $clientes,
-                'productos' => $productos
+                'codigo' => $productos->codigo,
+                'id_producto' => $productos->id_producto
+
             ];
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $productos = $this->productoModelo->obtenerProducto();
+                $clientes = $this->clienteModelo->obtenerClientes();
                 $datos = [
-                    'id_departamento' => $id
+                    'id_venta' => $id,
+                    'id_producto' => trim($_POST['id_producto']),
+                    'cantidad' => trim($_POST['cantidad'])
                 ];
 
                 if($this->ventaModelo->borrarVenta($datos)){

@@ -20,7 +20,7 @@
         }
 
         public function agregarProducto($datos){
-            $this->db->query('INSERT INTO producto (codigo, descripcion, precio, id_categoria, id_proveedor) VALUES (:codigo, :descripcion, :precio, :id_categoria, :id_proveedor)');
+            $this->db->query('INSERT INTO producto (codigo, descripcion, precio, id_categoria, id_proveedor, stock) VALUES (:codigo, :descripcion, :precio, :id_categoria, :id_proveedor, :stock)');
 
             //vincula los valores
             $this->db->bind(':codigo', $datos['codigo']);
@@ -28,6 +28,7 @@
             $this->db->bind(':precio', $datos['precio']);
             $this->db->bind(':id_categoria', $datos['id_categoria']);
             $this->db->bind(':id_proveedor', $datos['id_proveedor']);
+            $this->db->bind(':stock', $datos['stock']);
 
             //ejecutar el query
             if($this->db->execute()){
@@ -37,8 +38,8 @@
             }
         }
 
-        public function obtenerCategoria($id){
-            $this->db->query('SELECT * FROM categoria WHERE id_categoria = :id');
+        public function obtenerProductoId($id){
+            $this->db->query('SELECT * FROM producto WHERE id_producto = :id');
             $this->db->bind(':id', $id);
             $fila = $this->db->registro();
             return $fila;

@@ -20,7 +20,6 @@
                             <th>Descripcion</th>
                             <th>Precio</th>
                             <th>Stock</th>
-                            <th>Opciones</th>
 
                         </tr>
                     </thead>
@@ -71,6 +70,13 @@
                                 <label>Precio</label>
                                 <input type="number" step="0.01" name="precio" placeholder="Ingresa el precio" required>
                             </div>
+
+                            <div class="input-box">
+                                <label>Stock</label>
+                                <input type="number" name="stock" value="0" required readonly>
+                            </div>
+
+
                             
                         </div>
                         

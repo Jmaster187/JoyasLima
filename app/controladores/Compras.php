@@ -98,17 +98,17 @@
         //metodo para eliminar datos 
         public function borrar($id){
             //obtenemos los datos de la base de datos
-            $departamento = $this->departamentoModelo->obtenerDepartamentoId($id);
+            $compras = $this->compraModelo->obtenerCompraId($id);
 
             $datos = [
-                'id_departamento' => $departamento->id_departamento,
+                'id_compra' => $compras->id_compra,
                 'nombre' => $departamento->nombre,
                 'descripcion' => $departamento->descripcion
             ];
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $datos = [
-                    'id_departamento' => $id
+                    'id_compra' => $id
                 ];
 
                 if($this->departamentoModelo->borrarDepartamento($datos)){
@@ -118,6 +118,6 @@
                 }
             }
 
-            $this->vista('paginas/borrarDepartamento', $datos);
+            $this->vista('paginas/borrarCompra', $datos);
         }
     }

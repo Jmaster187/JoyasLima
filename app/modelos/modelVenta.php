@@ -9,6 +9,7 @@
         // funcion para poder llamar las vistas por medio de query y hace la interaccion con la funcion registro que se encuentra creada en base.php
         public function obtenerVenta(){
             $this->db->query('SELECT 
+            venta.id_venta,
             cliente.nombre AS nombre_cliente,
             producto.codigo AS codigo_producto,
             venta.cantidad,
@@ -17,7 +18,7 @@
         FROM 
             venta
         JOIN 
-            cliente ON cliente.id_cliente = cliente.id_cliente
+            cliente ON venta.id_cliente = cliente.id_cliente
         JOIN 
             producto ON venta.id_producto = producto.id_producto;');
             $resultados = $this->db->registros();

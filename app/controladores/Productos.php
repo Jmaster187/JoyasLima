@@ -36,6 +36,7 @@
                     'precio' => trim($_POST['precio']),
                     'id_categoria' => trim($_POST['id_categoria']),
                     'id_proveedor' => trim($_POST['id_proveedor']),
+                    'stock' => trim($_POST['stock']),
                     'proveedores' => $proveedores,
                     'categorias' => $categorias
                 ];

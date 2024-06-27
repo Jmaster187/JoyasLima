@@ -13,7 +13,8 @@
             producto.codigo AS codigo_producto,
             compra.cantidad,
             compra.precio_total,
-            compra.fecha
+            compra.fecha,
+            compra.id_compra
         FROM 
             compra
         JOIN 
@@ -42,6 +43,13 @@
             }
         }
 
+        public function obtenerCompraId($id){
+            $this->db->query('SELECT * FROM compra WHERE id_compra = :id');
+            $this->db->bind(':id', $id);
+            $fila = $this->db->registro();
+            return $fila;
+        }
+
        /* public function actualizarCliente($datos){
             $this->db->query('UPDATE cliente SET nombre = :nombre, apellido = :apellido, correo = :correo, telefono = :telefono, fecha_nacimiento = :fecha_nacimiento, genero = :genero, direccion = :direccion, ciudad = :ciudad WHERE id_cliente = :id');
 
@@ -64,11 +72,11 @@
             }
         }*/
 
-        public function borrarDepartamento($datos){
-            $this->db->query('DELETE FROM departamento WHERE id_departamento = :id');
+        public function borrarCompra($datos){
+            $this->db->query('DELETE FROM compra WHERE id_compra = :id');
 
             // se vinculan los valores para poder actializar
-            $this->db->bind(':id', $datos['id_departamento']);
+            $this->db->bind(':id', $datos['id_compra']);
 
             //ejecutar
             if($this->db->execute()){

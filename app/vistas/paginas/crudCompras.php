@@ -34,7 +34,7 @@
                             <td><?php echo $compra->precio_total; ?></td>
                             <td><?php echo $compra->fecha; ?></td>
                           <!--  <td><a href="<?php echo RUTA_URL; ?>/clientes/editar/<?php echo $cliente->id_cliente; ?>">Editar</a></td> -->
-                            <!-- <td><a href="<?php echo RUTA_URL; ?>/departamentos/borrar/<?php echo $departamento->id_departamento; ?>">Borrar</a></td> -->
+                            <td><a href="<?php echo RUTA_URL; ?>/Compras/borrar/<?php echo $compra->id_compra; ?>">Borrar</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
