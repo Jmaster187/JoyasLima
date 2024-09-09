@@ -281,7 +281,7 @@ body{
 }
 
 
-%%/* Estilos para la vista de compras */%%
+/* Estilos para la vista de compras */
 .titulo {
     text-align: center;
     margin: 20px 0;
@@ -319,4 +319,67 @@ table th {
 
 table tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+
+/* General table styling */
+.styled-table {  /* Código nuevo */ 
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.styled-table th, .styled-table td {  /* Código nuevo */ 
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+/* Table header styling */
+.styled-table th {  /* Código nuevo */ 
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Adjusting column widths */
+.styled-table th:nth-child(1), .styled-table td:nth-child(1) {  /* Código nuevo */ 
+    width: 10%;
+}
+
+.styled-table th:nth-child(2), .styled-table td:nth-child(2) {  /* Código nuevo */ 
+    width: 10%;
+}
+
+.styled-table th:nth-child(3), .styled-table td:nth-child(3) {  /* Código nuevo */ 
+    width: 20%;
+}
+
+.styled-table th:nth-child(4), .styled-table td:nth-child(4) {  /* Código nuevo */ 
+    width: 10%;
+}
+
+.styled-table th:nth-child(5), .styled-table td:nth-child(5) {  /* Código nuevo */ 
+    width: 10%;
+}
+
+.styled-table th:nth-child(6), .styled-table td:nth-child(6) {  /* Código nuevo */ 
+    width: 10%;
+}
+
+.styled-table th:nth-child(7), .styled-table td:nth-child(7) {  /* Código nuevo */ 
+    width: 15%;
+}
+
+.styled-table th:nth-child(8), .styled-table td:nth-child(8) {  /* Código nuevo */ 
+    width: 10%;
+}
+
+.styled-table th:nth-child(9), .styled-table td:nth-child(9) {  /* Código nuevo */ 
+    width: 10%;
+}
+
+/* Adding word-break to avoid text overflow */
+.styled-table th, .styled-table td {  /* Código nuevo */ 
+    word-break: break-word;
 }

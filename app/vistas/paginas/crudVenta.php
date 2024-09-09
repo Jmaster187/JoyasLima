@@ -9,11 +9,11 @@
     </head>
     <body>
        
-        <img src="public/img/Logo.jpg" alt="Logo" class="Logo">
+        <img src="<?php echo RUTA_PUBLIC; ?>/img/Logo.jpg" alt="Logo" class="Logo">
         <div class="main-container">
             <input type="text" id="searchInput" placeholder="Buscar Departamentos">
             <div class="container" style="max-height: 300px; overflow-y: auto;">
-                <table>
+                <table class="styled-table">
                     <thead>
                         <tr>
                             <th>cliente</th>
@@ -26,17 +26,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($datos['ventas'] as $venta) : ?>
-                        <tr>
-                            <td><?php echo $venta->nombre_cliente; ?></td>
-                            <td><?php echo $venta->codigo_producto; ?></td>
-                            <td><?php echo $venta->cantidad; ?></td>
-                            <td><?php echo $venta->precio_total; ?></td>
-                            <td><?php echo $venta->fecha; ?></td>
-                          <!--  <td><a href="<?php echo RUTA_URL; ?>/clientes/editar/<?php echo $cliente->id_cliente; ?>">Editar</a></td> -->
-                            <td><a href="<?php echo RUTA_URL; ?>/Ventas/borrar/<?php echo $venta->id_venta; ?>">Borrar</a></td>
-                        </tr>
-                    <?php endforeach; ?>
+                    <?php if (!empty($datos['ventas'])): ?>
+                        <?php foreach($datos['ventas'] as $venta) : ?>
+                            <tr>
+                                <td><?php echo $venta->nombre_cliente; ?></td>
+                                <td><?php echo $venta->codigo_producto; ?></td>
+                                <td><?php echo $venta->cantidad; ?></td>
+                                <td><?php echo $venta->precio_total; ?></td>
+                                <td><?php echo $venta->fecha; ?></td>
+                            <!--  <td><a href="<?php echo RUTA_URL; ?>/clientes/editar/<?php echo $cliente->id_cliente; ?>">Editar</a></td> -->
+                                <td><a href="<?php echo RUTA_URL; ?>/Ventas/borrar/<?php echo $venta->id_venta; ?>">Borrar</a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     </tbody>
                 </table>
 
@@ -46,6 +48,8 @@
                 <button class="btn">Agregar</button>
             </div>
         </div>
+
+        
         <!--Creacion de la ventana modal-->
         <section class="modal">
             
@@ -106,6 +110,13 @@
                 </section>
             
         </section>
+
+        <!-- Mostrar una alerta si no hay stock -->
+        <?php if (!empty($datos['error'])) : ?>
+            <script>
+                alert('<?php echo $datos['error']; ?>');
+            </script>
+        <?php endif; ?>
 
         <script src="<?php echo RUTA_PUBLIC; ?>/js/cliente.js"></script>
     </body>

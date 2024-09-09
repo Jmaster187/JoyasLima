@@ -6,8 +6,56 @@
             $this->productoModelo = $this->modelo('modelProducto');
             $this->proveedorModelo = $this->modelo('modelProveedor');
             $this->categoriaModelo = $this->modelo('modelCategoria');
+            $this->departamentoModelo = $this->modelo('modelDepartamento');
+
             
         }
+
+
+        //para ver el stock por departamento
+        public function verPorDepartamento($id_departamento) {
+            $productos = $this->productoModelo->obtenerProductosPorDepartamento($id_departamento);
+            $departamento = $this->departamentoModelo->obtenerDepartamentoId($id_departamento);
+            $datos = [
+                'productos' => $productos,
+                'departamento' => $departamento
+            ];
+
+            $this->vista('paginas/productosPorDepartamento', $datos);
+        }
+
+        //metodo para transferir stock
+        public function transferirStock(){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $datos = [
+                    'id_producto' => trim($_POST['id_producto']),
+                    'id_departamento' => trim($_POST['id_departamento']),
+                    'cantidad' => trim($_POST['cantidad'])
+                ];
+
+                if ($this->productoModelo->transferirStock($datos['id_producto'], $datos['id_departamento'], $datos['cantidad'])) {
+                    redireccionar('/productos/verPorDepartamento/' . $datos['id_departamento']);
+                } else {
+                    $datos['error'] = 'Stock insuficiente en el almacén principal';
+                    $this->vista('paginas/transferirStock', $datos);
+                }
+            } else {
+                $productos = $this->productoModelo->obtenerProducto();
+                $departamentos = $this->departamentoModelo->obtenerDepartamento();
+                $datos = [
+                    'id_producto' => '',
+                    'id_departamento' => '',
+                    'cantidad' => '',
+                    'productos' => $productos,
+                    'departamentos' => $departamentos,
+                    'error' => ''
+                ];
+    
+                $this->vista('paginas/transferirStock', $datos);
+            }
+            
+            }
+        
 
         public function index(){
             //Obtener los usuarios
@@ -37,6 +85,7 @@
                     'id_categoria' => trim($_POST['id_categoria']),
                     'id_proveedor' => trim($_POST['id_proveedor']),
                     'stock' => trim($_POST['stock']),
+
                     'proveedores' => $proveedores,
                     'categorias' => $categorias
                 ];

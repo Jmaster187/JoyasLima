@@ -141,5 +141,50 @@
             }
         }
 
+         //Obtener productos por departamento
+        public function obtenerProductosPorDepartamento($id_departamento){
+            $this->db->query('SELECT producto.*, stock_departamento.stock AS stock_departamento FROM producto
+                            JOIN stock_departamento ON producto.id_producto = stock_departamento.id_producto
+                            WHERE stock_departamento.id_departamento = :id_departamento');
+            $this->db->bind(':id_departamento', $id_departamento);
+            $resultados = $this->db->registros();
+            return $resultados;
+        }
+
+        //Codigo para la función del stock por departamento
+        public function obtenerStockPorDepartamento($id_producto, $id_departamento) {
+            $this->db->query('SELECT stock FROM stock_departamento WHERE id_producto = :id_producto AND id_departamento = :id_departamento');
+            $this->db->bind(':id_producto', $id_producto);
+            $this->db->bind(':id_departamento', $id_departamento);
+            $resultado = $this->db->registro();
+            return $resultado ? $resultado->stock : 0;
+        }
+
+        //Transferir stock al departamento
+        public function transferirStock($id_producto, $id_departamento, $cantidad) {
+            $this->db->query('SELECT stock FROM producto WHERE id_producto = :id_producto');
+            $this->db->bind(':id_producto', $id_producto);
+            $resultado = $this->db->registro();
+            $stockDisponible = $resultado ? $resultado->stock : 0;
+
+            if ($cantidad > $stockDisponible) {
+                return false;
+            }
+
+            //disminuir el stock
+            $this->db->query('UPDATE producto SET stock = stock - :cantidad WHERE id_producto = :id_producto');
+            $this->db->bind(':cantidad', $cantidad);
+            $this->db->bind(':id_producto', $id_producto);
+            $this->db->execute();
+
+            // Aumentar stock en el departamento
+            $this->db->query('INSERT INTO stock_departamento (id_producto, id_departamento, stock) VALUES (:id_producto, :id_departamento, :cantidad)
+            ON DUPLICATE KEY UPDATE stock = stock + :cantidad');
+            $this->db->bind(':id_producto', $id_producto);
+            $this->db->bind(':id_departamento', $id_departamento);
+            $this->db->bind(':cantidad', $cantidad);
+            return $this->db->execute();
+        }
+
 
     }

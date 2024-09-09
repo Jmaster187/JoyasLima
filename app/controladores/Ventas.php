@@ -17,7 +17,8 @@
             $datos = [
                 'ventas' => $ventas,
                 'productos' => $productos,
-                'clientes' => $clientes 
+                'clientes' => $clientes,
+                'error' => ''
                 
             ];
 
@@ -28,8 +29,10 @@
         public function agregar(){
             $productos = $this->productoModelo->obtenerProducto();
             $clientes = $this->clienteModelo->obtenerClientes();
+            $ventas = $this->ventaModelo->obtenerVenta();
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $ventas = $this->ventaModelo->obtenerVenta();
                 $datos = [
                     'id_producto' => trim($_POST['id_producto']),
                     'id_cliente' => trim($_POST['id_cliente']),
@@ -37,8 +40,18 @@
                     'precio_total' => trim($_POST['precio_total']),
                     'fecha' => trim($_POST['fecha']),
                     'clientes' => $clientes,
-                    'productos' => $productos
+                    'productos' => $productos,
+                    'ventas' => $ventas,
+                    'error' => '',
+                    'stock_disponible' => $this->ventaModelo->obtenerStockProducto(trim($_POST['id_producto']))
                 ];
+
+                $stockDisponible = $this->ventaModelo->obtenerStockProducto($datos['id_producto']);
+                if ($datos['cantidad'] > $stockDisponible) {
+                    $datos['error'] = 'Articulo insuficiente para la venta. Disponible: ' . $stockDisponible;
+                    $this->vista('paginas/crudVenta', $datos);
+                    return;
+                }
             
 
                 if($this->ventaModelo->agregarVenta($datos)){
@@ -49,6 +62,18 @@
                     die('algo salio mal');
                 }
             }else{
+                $datos = [
+                    'id_producto' => '',
+                    'id_cliente' => '',
+                    'cantidad' => '',
+                    'precio_total' => '',
+                    'fecha' => '',
+                    'clientes' => $clientes,
+                    'productos' => $productos,
+                    'ventas' => $ventas,
+                    'error' => '',
+                    'stock_disponible' => 0
+                ];
 
                 $this->vista('paginas/crudVenta', $datos);
             }

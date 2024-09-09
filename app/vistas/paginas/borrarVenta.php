@@ -13,6 +13,11 @@
                 <section class="container_modal">
                 <a href="<?php echo RUTA_URL; ?>/Ventas" class="btn btn-light"><i class="fa fa-backward"></i>Volver</a>
                     <header>Borrar informacion de clientes</header>
+
+                    <!-- mostrar el error si no existe stock disponible-->
+                     <?php if (!empty($datos['error'])) : ?>
+                        <div class="error"><?php echo $datos['error']; ?></div>
+                    <?php endif; ?>
             
                     <form action="<?php echo RUTA_URL; ?>/Ventas/borrar/<?php echo $datos['id_venta'] ?>" method="POST" class="form">
                         <input type="hidden" name="id_producto" value="<?php echo $datos['id_producto']; ?>">

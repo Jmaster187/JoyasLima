@@ -6,6 +6,14 @@
         public function __construct(){
             $this->db = new Base;
         }
+
+        public function obtenerStockProducto($id_producto){
+            $this->db->query('SELECT stock FROM producto WHERE id_producto = :id_producto');
+            $this->db->bind(':id_producto', $id_producto);
+            $resultado = $this->db->registro();
+            return $resultado ? $resultado->stock : 0;
+        }
+
         // funcion para poder llamar las vistas por medio de query y hace la interaccion con la funcion registro que se encuentra creada en base.php
         public function obtenerVenta(){
             $this->db->query('SELECT 
@@ -84,6 +92,13 @@
             }else {
                 return false;
             }
+        }
+
+        public function actualizarStockProducto($id_producto, $cantidad) {
+            $this->db->query('UPDATE producto SET stock = stock - :cantidad WHERE id_producto = :id_producto');
+            $this->db->bind(':cantidad', $cantidad);
+            $this->db->bind(':id_producto', $id_producto);
+            $this->db->execute();
         }
 
 

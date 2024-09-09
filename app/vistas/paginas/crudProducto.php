@@ -32,6 +32,9 @@
                             <td><?php echo $producto->stock; ?></td>
                           <!--  <td><a href="<?php echo RUTA_URL; ?>/clientes/editar/<?php echo $cliente->id_cliente; ?>">Editar</a></td> -->
                             <!-- <td><a href="<?php echo RUTA_URL; ?>/departamentos/borrar/<?php echo $departamento->id_departamento; ?>">Borrar</a></td> -->
+                             <!-- En tu menú o donde desees agregar el enlace -->
+                            <a href="<?php echo RUTA_URL; ?>/productos/transferirStock">Transferir Stock</a>
+
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
